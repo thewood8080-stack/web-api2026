@@ -1,25 +1,22 @@
 const express=require('express');
+
+const {
+  getAllOrders,
+  addNewOrder,
+  getOrderById,
+  updateOrderById,
+  deleteOrderById
+} = require('../controllers/order');
 const router=express.Router();
 
+router.get('/',getAllOrders);
 
-router.get('/',(req, res)=>{
-  res.status(200).json({ msg:'Get all orders'});
-});
+router.post('/',addNewOrder);
 
-router.post('/',(req, res)=>{
-  res.status(200).json({ msg:'Add New order' });
-});
+router.get('/:id',getOrderById);
 
-router.get('/:id',(req, res)=>{
-  res.status(200).json({ msg:`Get order By Id ${req.params.id}` });
-});
+router.put('/:id',updateOrderById);
 
-router.put('/:id', (req, res)=>{
-  res.status(200).json({ msg:`Update order By Id ${req.params.id}`});
-});
-
-router.delete('/:id', (req, res)=>{
-  res.status(200).json({ msg:`Delete order By Id ${req.params.id}`});
-});
+router.delete('/:id',deleteOrderById);
 
 module.exports=router;
